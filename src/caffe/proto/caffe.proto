@@ -212,7 +212,7 @@ message SolverParameter {
   // type of the solver
   optional string type = 40 [default = "SGD"];
 
-  // numerical stability for RMSProp, AdaGrad and AdaDelta and Adam
+  // numerical stability for RMSProp, AdaGrad, AdaDelta, Adam and RMSPropGraves
   optional float delta = 31 [default = 1e-8];
   // parameters for the Adam solver
   optional float momentum2 = 39 [default = 0.999];
@@ -236,6 +236,7 @@ message SolverParameter {
     RMSPROP = 3;
     ADADELTA = 4;
     ADAM = 5;
+    RMSPROPGRAVES = 6;
   }
   // DEPRECATED: use type instead of solver_type
   optional SolverType solver_type = 30 [default = SGD];
@@ -429,7 +430,7 @@ message LossParameter {
     // Outputs that receive the ignore label will NOT be ignored in computing
     // the normalization factor.
     FULL = 0;
-    // Divide by the total number of output locations that do not take the 
+    // Divide by the total number of output locations that do not take the
     // ignore_label.  If ignore_label is not set, this behaves like FULL.
     VALID = 1;
     // Divide by the batch size.
@@ -637,7 +638,7 @@ message EltwiseParameter {
 // Message that stores parameters used by ELULayer
 message ELUParameter {
   // Described in:
-  // Clevert, D.-A., Unterthiner, T., & Hochreiter, S. (2015). Fast and Accurate 
+  // Clevert, D.-A., Unterthiner, T., & Hochreiter, S. (2015). Fast and Accurate
   // Deep Network Learning by Exponential Linear Units (ELUs). arXiv
   optional float alpha = 1 [default = 1];
 }

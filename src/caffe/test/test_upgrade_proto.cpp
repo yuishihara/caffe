@@ -2945,11 +2945,11 @@ class SolverTypeUpgradeTest : public ::testing::Test {
 };
 
 TEST_F(SolverTypeUpgradeTest, TestSimple) {
-  const char* old_type_vec[6] = { "SGD", "ADAGRAD", "NESTEROV", "RMSPROP",
-      "ADADELTA", "ADAM" };
-  const char* new_type_vec[6] = { "SGD", "AdaGrad", "Nesterov", "RMSProp",
-      "AdaDelta", "Adam" };
-  for (int i = 0; i < 6; ++i) {
+  const char* old_type_vec[7] = { "SGD", "ADAGRAD", "NESTEROV", "RMSPROP",
+      "ADADELTA", "ADAM", "RMSPROPGRAVES" };
+  const char* new_type_vec[7] = { "SGD", "AdaGrad", "Nesterov", "RMSProp",
+      "AdaDelta", "Adam", "RMSPropGraves" };
+  for (int i = 0; i < 7; ++i) {
     const string& input_proto =
         "net: 'examples/mnist/lenet_train_test.prototxt' "
         "test_iter: 100 "

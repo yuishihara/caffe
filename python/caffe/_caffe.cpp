@@ -313,6 +313,9 @@ BOOST_PYTHON_MODULE(_caffe) {
   bp::class_<AdamSolver<Dtype>, bp::bases<Solver<Dtype> >,
     shared_ptr<AdamSolver<Dtype> >, boost::noncopyable>(
         "AdamSolver", bp::init<string>());
+  bp::class_<RMSPropGravesSolver<Dtype>, bp::bases<Solver<Dtype> >,
+    shared_ptr<RMSPropGravesSolver<Dtype> >, boost::noncopyable>(
+        "RMSPropGravesSolver", bp::init<string>());
 
   bp::def("get_solver", &GetSolverFromFile,
       bp::return_value_policy<bp::manage_new_object>());

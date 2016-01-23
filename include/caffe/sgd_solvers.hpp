@@ -143,6 +143,35 @@ class AdamSolver : public SGDSolver<Dtype> {
   DISABLE_COPY_AND_ASSIGN(AdamSolver);
 };
 
+template <typename Dtype>
+class RMSPropGravesSolver : public SGDSolver<Dtype> {
+ public:
+  explicit RMSPropGravesSolver(const SolverParameter& param)
+      : SGDSolver<Dtype>(param) {
+        constructor_sanity_check();
+        RMSPropGravesPreSolve();
+      }
+  explicit RMSPropGravesSolver(const string& param_file)
+      : SGDSolver<Dtype>(param_file) {
+        constructor_sanity_check();
+        RMSPropGravesPreSolve();
+      }
+  virtual inline const char* type() const { return "RMSPropGraves"; }
+
+ protected:
+  void RMSPropGravesPreSolve();
+  virtual void ComputeUpdateValue(int param_id, Dtype rate);
+  void constructor_sanity_check() {
+    CHECK_GE(this->param_.rms_decay(), 0)
+        << "rms_decay should lie between 0 and 1.";
+    CHECK_LT(this->param_.rms_decay(), 1)
+        << "rms_decay should lie between 0 and 1.";
+  }
+
+  DISABLE_COPY_AND_ASSIGN(RMSPropGravesSolver);
+};
+
+
 }  // namespace caffe
 
 #endif  // CAFFE_SGD_SOLVERS_HPP_
